@@ -1,43 +1,59 @@
-<script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
-      >Vue Docs Scaling up Guide</a
-    >.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <form @submit.prevent="addItem">
+    <input
+      type="text"
+      v-model="newItem"
+      placeholder="Digite o item"
+      required
+    />
+    <button type="submit">Adicionar</button>
+  </form>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
+<script>
+export default {
+  name: "AddItemForm",
+  data() {
+    return {
+      newItem: "", // Armazena o nome do item digitado
+    };
+  },
+  methods: {
+    addItem() {
+      if (this.newItem.trim() === "") return;
+
+      // Emite o item para o componente pai
+      this.$emit("item-added", this.newItem.trim());
+      this.newItem = ""; // Limpa o campo
+    },
+  },
+};
+</script>
+
+<style>
+form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #42b983;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #369c73;
 }
 </style>
