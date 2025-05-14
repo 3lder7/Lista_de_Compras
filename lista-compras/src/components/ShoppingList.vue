@@ -26,12 +26,7 @@ export default {
 };
 </script>
 
-<style>
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
+<style scoped>
 li {
   display: flex;
   justify-content: space-between;
