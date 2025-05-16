@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import AddItemForm from "./components/AddItemForm.vue";
-import ShoppingList from "./components/ShoppingList.vue";
-import BoughtItems from "./components/BoughtItems.vue";
+import AddItemForm from "./components/AdicionaItem.vue";
+import ShoppingList from "./components/ListaCompras.vue";
+import BoughtItems from "./components/ItensComprados.vue";
 
 export default {
   name: "App",
